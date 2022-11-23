@@ -23,7 +23,6 @@ jobs:
           POSTGRES_USER: postgres
           POSTGRES_DB: postgres
           POSTGRES_PASSWORD: password
-          POSTGRES_HOST_AUTH_METHOD: trust
     working_directory: ~/api
     environment:
       BUNDLE_JOBS: "3"
@@ -33,21 +32,22 @@ jobs:
       - checkout
       - ruby/install-deps
       - run:
-          name: setup
+          name: gem setup
           command: |
             gem install bundler
             bundle config set path 'vendor/bundle'
             bundle install --jobs=4 --retry=3
       - run:
-            name: DBの起動を待つ
+            name: wait DB start
             command: dockerize -wait tcp://127.0.0.1:5432 -timeout 120s
       - run:
-          name: DB setup
+          name: DB create & migrate
           command: |
             bundle exec rails db:create
+            bundle exec rails db:migrate
       - run: bundle exec rake db:schema:load
       - run:
-          name: Rspec
+          name: Exec Rspec
           command: bundle exec rspec
       - store_test_results:
           path: /tmp/test-results
