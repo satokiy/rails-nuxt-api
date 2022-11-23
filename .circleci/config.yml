@@ -21,7 +21,7 @@ jobs:
       - image: cimg/postgres:12.12
         environment: # add POSTGRES environment variables.
           POSTGRES_USER: postgres
-          POSTGRES_DB: db
+          POSTGRES_DB: postgres
           POSTGRES_PASSWORD: password
           POSTGRES_HOST_AUTH_METHOD: trust
     working_directory: ~/api
