@@ -7,7 +7,6 @@
 # Ignore bundler config.
 /.bundle
 /.gem
-/.irb_history
 # Ignore all logfiles and tempfiles.
 /log/*
 /tmp/*
@@ -26,3 +25,11 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+
+# Rubyコマンド履歴
+/.irb_history
+# シェルコマンド履歴
+/.ash_history
+# デバッグbinding.pryコマンド履歴
+/.local
+/.local/*
