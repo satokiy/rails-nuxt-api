@@ -33,3 +33,4 @@
 # デバッグbinding.pryコマンド履歴
 /.local
 /.local/*
+/node_modules/
